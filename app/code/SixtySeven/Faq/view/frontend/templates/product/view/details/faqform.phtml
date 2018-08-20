@@ -1,0 +1,36 @@
+<?php 
+/**
+ * FAQ Extension
+ *
+ * @package SixtySeven Commerce
+ * @author SixtySeven Commerce - All Rights Reserved
+ * @copyright 2018 SixtySeven Commerce
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ */
+?>
+<div class="faq-button">
+<a class="action open-modal-form buttonforLink"
+   href="#"
+   title="Ask a question">
+    <span>Ask a question</span>
+</a>
+</div>
+
+<form action="<?php echo $block->getFormAction() ?>" method="post" id="popup-modal" style="display:none;">
+    <?php $pId = $block->getCurrentProduct()->getId(); ?>
+    <?= $block->getBlockHtml('formkey') ?>
+    Your Name: <input name="firstname" type="text">
+    Your Email:<input name="email" type="text">    
+    Your Question<textarea name="title"></textarea>
+    <input type="hidden" name="products" value="<?php echo $pId; ?>">
+</form>
+<script type="text/x-magento-init">
+    {
+        ".open-modal-form": {
+            "modal-form": {
+            	"formUrl":"<?php echo $block->getFormAction() ?>"
+        	}
+        }
+    }
+</script>

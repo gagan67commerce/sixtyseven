@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="prototype/windows/themes/default.css"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="SixtySeven\Faq\Block\Adminhtml\Faq\Edit" name="sixtyseven_faq_edit"/>
+        </referenceContainer>
+        <referenceContainer name="left">
+            <block class="SixtySeven\Faq\Block\Adminhtml\Faq\Edit\Tabs" name="sixtyseven_faq_edit_tabs">
+                <block class="SixtySeven\Faq\Block\Adminhtml\Faq\Edit\Tab\General" name="sixtyseven_faq_edit_tab_general"/>
+                <block class="SixtySeven\Faq\Block\Adminhtml\Faq\Edit\Tab\Content" name="sixtyseven_faq_edit_tab_content"/>
+                <block class="SixtySeven\Faq\Block\Adminhtml\Faq\Edit\Tab\SearchEngineOptimisation" name="sixtyseven_faq_edit_tab_optimisation"/>
+                <block class="SixtySeven\Faq\Block\Adminhtml\Faq\Edit\Tab\Websites" name="sixtyseven_faq_edit_tab_websites"/>
+                <block class="SixtySeven\Faq\Block\Adminhtml\Faq\Edit\Tab\Products" name="sixtyseven_faq_edit_tab_products"/>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">general_section</argument>
+                    <argument name="block" xsi:type="string">sixtyseven_faq_edit_tab_general</argument>
+                </action>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">content_section</argument>
+                    <argument name="block" xsi:type="string">sixtyseven_faq_edit_tab_content</argument>
+                </action>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">optimisation_section</argument>
+                    <argument name="block" xsi:type="string">sixtyseven_faq_edit_tab_optimisation</argument>
+                </action>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">websites_section</argument>
+                    <argument name="block" xsi:type="string">sixtyseven_faq_edit_tab_websites</argument>
+                </action>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">products_section</argument>
+                    <argument name="block" xsi:type="array">
+                        <item name="label" xsi:type="string">Select Products</item>
+                        <item name="title" xsi:type="string">Select Products</item>
+                        <item name="url" xsi:type="helper" helper="SixtySeven\Faq\Helper\Data::getProductsGridUrl"></item>
+                        <item name="class" xsi:type="string">ajax</item>
+                    </argument>
+                </action>
+                <!--action method="addTab">
+                    <argument name="name" xsi:type="string">products_section</argument>
+                    <argument name="block" xsi:type="string">sixtyseven_faq_edit_tab_products</argument>
+                </action-->
+            </block>
+        </referenceContainer>        
+    </body>
+</page>

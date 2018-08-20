@@ -1,0 +1,47 @@
+<?php 
+/**
+ * FAQ Extension
+ *
+ * @package SixtySeven Commerce
+ * @author SixtySeven Commerce - All Rights Reserved
+ * @copyright 2018 SixtySeven Commerce
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ */
+ ?>
+<div class="faq-category">
+    <?php if ($this->getLatestFAQ()): ?>
+        <ol class="itemsFaq faqs-list">
+            <?php foreach($this->getLatestFAQ() as $faq): ?>
+                <li class="itemFaq" id="faq-id-<?php echo $faq['faq_id']; ?>">                    
+                    <h3>                        
+                        <a class="showAnswerFaq" href="#">
+                            <?php echo $faq['title']; ?>                                
+                        </a>
+                    </h3>
+                    <div class="descriptionFaq hidden" id="descriptionFaq">                        
+                        <?php echo $faq['content']; ?>
+                    </div>                    
+                </li>
+            <?php endforeach; ?>
+        </ol>
+    <?php else: ?>
+        <ol class="items faqs-list">
+            <li class="item no-question">
+                <a href="#"><?php echo __('There are no latest questions was found.'); ?></a>
+            </li>
+        </ol>
+    <?php endif; ?>
+</div>
+<script type="text/javascript">
+    require(['jquery', 'jquery/ui'], function($){
+        jQuery(document).ready( function() {
+            jQuery('.showAnswerFaq').click(function(event) {
+                event.preventDefault();
+                jQuery(this).parent().toggleClass('expanded');                
+                jQuery(this).parent().next('div').slideToggle(500);
+            });         
+        });
+    });
+</script>
+

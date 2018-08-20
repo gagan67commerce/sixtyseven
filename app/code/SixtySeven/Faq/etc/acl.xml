@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="SixtySeven_Faq::faqa" title="FAQ's">
+                    <resource id="SixtySeven_Faq::faq" title="FAQ's Manager">
+                        <resource id="SixtySeven_Faq::faq_create" title="Create New FAQ"/>
+                        <resource id="SixtySeven_Faq::faq_edit" title="Edit" />
+                        <resource id="SixtySeven_Faq::faq_delete" title="Delete"/>
+                    </resource>
+                    <resource id="SixtySeven_Faq::category" title="Category Manager">
+                        <resource id="SixtySeven_Faq::category_create" title="Create New Category"/>
+                        <resource id="SixtySeven_Faq::category_edit" title="Edit" />
+                        <resource id="SixtySeven_Faq::category_delete" title="Delete"/>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

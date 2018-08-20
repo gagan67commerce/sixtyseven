@@ -1,0 +1,52 @@
+<?php
+/**
+ * FAQ Extension
+ *
+ * @package SixtySeven Commerce
+ * @author SixtySeven Commerce - All Rights Reserved
+ * @copyright 2018 SixtySeven Commerce
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ */
+?>
+<?php
+ 
+    $blockObj= $block->getLayout()->createBlock('SixtySeven\Faq\Block\Faq\Faq');
+	$allProducts = $this->getProductsBlock(); 
+	$currProduct = $this->getCurrentProduct()->getId();
+
+    if(in_array($currProduct, array_column($allProducts, 'product_id'))) {
+    	 
+    	$faqDataArray = $this->getBlockFaqDataById();    
+        echo '<h2>Questions</h2>';
+    	echo '<div>';
+    	echo '<ul class="ulFaq">';
+    	foreach ($faqDataArray as $faqData) {
+            if(isset($faqData['0'])){         
+                if($faqData['0']['is_active'] == '1'){
+    				echo '<li class="liFaq"><h3>';                   
+    				echo '<a class="showAnswerProduct" href="#">'.$faqData['0']['title'].'</a>';
+    				echo '</h3>';    				
+    				echo '<div class="faqContentProduct hidden">';
+    						echo $faqData['0']['content'];
+    				echo '</div></li>';
+                }
+            }           
+    			
+    	}
+    	echo '</ul>';
+    	echo '</div>';
+    } 	        
+?>
+<?= $this->getLayout()->createBlock("SixtySeven\Faq\Block\Product\View\Details\Faqform")->setTemplate("SixtySeven_Faq::product/view/details/faqform.phtml")->toHtml(); ?>
+<script type="text/javascript">
+    require(['jquery', 'jquery/ui'], function($){
+  		jQuery(document).ready( function() {
+  			jQuery('.showAnswerProduct').click(function(event) {
+  				event.preventDefault();
+                jQuery(this).parent().toggleClass('expanded');
+  				jQuery(this).parent().next('div').slideToggle(500);
+    		});    		
+  		});
+	});
+</script>
