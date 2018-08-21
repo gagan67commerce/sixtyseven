@@ -1,4 +1,15 @@
 {
   "name":"gagan67commerce/sixtyseven",
-  "description":"this is test package"
+  "description":"this is test package",
+  "license": [
+        "Commercial"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "SixtySeven\\Faq\\": ""
+        }
+    }
 }
