@@ -1,43 +1,4 @@
 {
-    "name": "sixtyseven/faq",
-    "description":"FAQ Extension",    
-    "require": {
-        "php": "~5.6.0|7.0.2|7.0.4|~7.0.6|~7.1.0"        
-    },
-    "type": "magento2-module",
-    "name": "sixtyseven/faq",
-    "version": "1.0.0",  
-    "extra": {
-        "map": [
-            [
-                "*",
-                "SixtySeven/Faq"
-            ]
-        ]
-    },  
-    "authors": [
-        {
-            "name": "SixtySeven Commerce",
-            "email": "",
-            "role": "Developer"
-        }
-    ],
-    "repositories": [
-    {
-      "type": "composer",
-      "url": "http://packages.magento.com/"
-    },
-    {
-      "type": "vcs",
-      "url": "https://github.com/gagan67commerce/sixtyseven"
-    }
-  ],
-    "autoload": {
-        "files": [
-            "registration.php"
-        ],
-        "psr-4": {
-            "SixtySeven\\Faq\\": ""
-        }
-    }
+  "name":"sixtyseven/faq",
+  "description":"this is test package"
 }
