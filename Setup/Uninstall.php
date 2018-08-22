@@ -48,7 +48,6 @@ class Uninstall implements UninstallInterface
         ModuleContextInterface $context
     ) {
         $installer = $setup;
-
         $installer->startSetup();
         $connection = $installer->getConnection();
         $connection->dropTable($connection->getTableName('sixtyseven_faq'));        
@@ -58,8 +57,9 @@ class Uninstall implements UninstallInterface
         $connection->dropTable($connection->getTableName('sixtyseven_faq_category_id'));
         $connection->dropTable($connection->getTableName('sixtyseven_faq_like'));
         $connection->dropTable($connection->getTableName('sixtyseven_faq_attachment_rel'));
+        //$connection->delete($connection->getTableName('core_config_data'),['path=?'=>'sixtyseven_faq/general/ajax']);
         $collection = $this->collectionFactory->create()
-            ->addPathFilter('sixtyseven_faq/general/ajax');
+            ->addPathFilter('sixtyseven_faq');
         foreach ($collection as $config) {
             $this->deleteConfig($config);
         }
