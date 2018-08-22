@@ -39,6 +39,10 @@ class Uninstall implements UninstallInterface
         $connection->dropTable($connection->getTableName('sixtyseven_faq_category_id'));
         $connection->dropTable($connection->getTableName('sixtyseven_faq_like'));
         $connection->dropTable($connection->getTableName('sixtyseven_faq_attachment_rel'));
+        $this->getConnection()->delete(
+                $connection->getTableName('core_config_data'),
+                ['path = ?', 'sixtyseven_faq/general/ajax']
+            );
         $installer->endSetup();
     }
 }
