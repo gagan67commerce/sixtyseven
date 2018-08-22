@@ -11,12 +11,23 @@
 
 namespace SixtySeven\Faq\Setup;
 
+use Magento\Framework\Model\AbstractModel;
 use Magento\Framework\Setup\UninstallInterface;
 use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\SchemaSetupInterface;
+use Magento\Config\Model\ResourceModel\Config\Data;
+use Magento\Config\Model\ResourceModel\Config\Data\CollectionFactory;
 
 class Uninstall implements UninstallInterface
 {
+    /**
+     * @var CollectionFactory
+     */
+    protected $collectionFactory;
+    /**
+     * @var Data
+     */
+    protected $configResource;
     /**
      * {@inheritdoc}
      *
@@ -24,6 +35,14 @@ class Uninstall implements UninstallInterface
      * @param ModuleContextInterface $context
      * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
+    public function __construct(
+        CollectionFactory $collectionFactory,
+        Data $configResource
+    )
+    {
+        $this->collectionFactory = $collectionFactory;
+        $this->configResource    = $configResource;
+    }
     public function uninstall(
         SchemaSetupInterface $setup,
         ModuleContextInterface $context
@@ -39,10 +58,15 @@ class Uninstall implements UninstallInterface
         $connection->dropTable($connection->getTableName('sixtyseven_faq_category_id'));
         $connection->dropTable($connection->getTableName('sixtyseven_faq_like'));
         $connection->dropTable($connection->getTableName('sixtyseven_faq_attachment_rel'));
-        $$connection->delete(
-                $connection->getTableName('core_config_data'),
-                ['path = ?', 'sixtyseven_faq/general/ajax']
-            );
+        $collection = $this->collectionFactory->create()
+            ->addPathFilter('sixtyseven_faq/general/ajax');
+        foreach ($collection as $config) {
+            $this->deleteConfig($config);
+        }
         $installer->endSetup();
+    }
+    protected function deleteConfig(AbstractModel $config)
+    {
+        $this->configResource->delete($config);
     }
 }
