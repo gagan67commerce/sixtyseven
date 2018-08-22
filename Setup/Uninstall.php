@@ -31,7 +31,7 @@ class Uninstall implements UninstallInterface
         $installer = $setup;
 
         $installer->startSetup();
-        $table = $installer->getConnection();
+        $connection = $installer->getConnection();
         $connection->dropTable($connection->getTableName('sixtyseven_faq'));        
         $connection->dropTable($connection->getTableName('sixtyseven_faq_store'));
         $connection->dropTable($connection->getTableName('sixtyseven_faq_category'));
